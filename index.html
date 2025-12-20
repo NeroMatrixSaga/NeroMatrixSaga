@@ -22,8 +22,9 @@
     }
 
     section {
-      margin-bottom: 120px;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     h1 {
@@ -45,10 +46,12 @@
       opacity: 0.9;
     }
     a.btn {
-      display: block;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
       width: 100%;
       max-width: 340px;
-      margin: 14px auto;
+      margin: 14px 0;
       padding: 16px 20px;
       background: linear-gradient(135deg, #111, #1a1a22);
       color: #e6e6eb;
@@ -58,7 +61,7 @@
       font-size: 0.9rem;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      transition: all 0.25s ease;      
+      transition: all 0.25s ease;        
     }
 
     a.btn:hover {
