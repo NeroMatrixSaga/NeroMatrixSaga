@@ -70,7 +70,15 @@
       padding: 120px 20px;
       border-bottom: 1px solid #222;
     }
-   
+     section:not(.hero)::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 1px;
+      background: #333;
+      margin: 60px auto 0;
+    }
+
     footer {
       text-align: center;
       font-size: 0.8rem;
