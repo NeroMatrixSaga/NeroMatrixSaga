@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -201,6 +201,31 @@
       }
     }
 
+      /* Cover Page */
+    .cover-page {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .cover-page h1 {
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .cover-page h2 {
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: #f72119; /* Red accent */
+      text-transform: uppercase;
+    }
+
+    
   </style>
 </head>
 
@@ -246,6 +271,13 @@
 
   <script>
     const pages = [
+    const pages = [
+      `
+      <div class="cover-page">
+        <h1>MORTAL MATRIX</h1>
+        <h2>The Lie of Ascension</h2>
+      </div>
+      `,
       `
       <div class="book-title">
         <h1>THE MORTAL MATRIX</h1>
