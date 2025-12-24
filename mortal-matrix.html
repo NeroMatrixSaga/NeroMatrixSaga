@@ -227,6 +227,37 @@
       cursor: default;
       color: #D6D6DC;
     }
+
+    /* ================= IMAGE COVER PAGE ================= */
+
+    .cover-image {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 1px;
+    }
+    .cover-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at center,
+        transparent 60%,
+        rgba(0,0,0,0.45) 100%
+      );
+    }
+    .cover-image {
+      animation: coverFade 1.2s ease;
+    }
+    
+    @keyframes coverFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+
   </style>
 </head>
 
@@ -276,6 +307,7 @@
 
 <script>
   const pages = [
+    `<div class="cover-image" style="background-image: url('assets/cover.jpg');"></div>`,
     `<div class="cover-page"><h1>MORTAL MATRIX</h1><h2>The Lie of Ascension</h2></div>`,
     `<div class="prologue-heading">PROLOGUE</div><p>[Prologue text]</p>`,
     `<p>[Prologue continues]</p>`,
