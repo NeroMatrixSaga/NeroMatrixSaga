@@ -157,24 +157,6 @@
       opacity: 0.4;
       cursor: default;
     }
-  </style>
-</head>
-
-<body>
-
-  <main>
-
-    <!-- Top Bar -->
-    <div class="top-bar">
-      <button onclick="openChapters()">Chapters</button>
-      <span>The Mortal Matrix</span>
-    </div>
-
-   <!-- Book Frame -->
-    <div class="book-frame">
-      <div id="page" class="page"></div>
-    </div>
-
     /* Book page frame */
     .book-frame {
       width: 100%;
@@ -213,6 +195,25 @@
       }
     }
 
+  </style>
+</head>
+
+<body>
+
+  <main>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <button onclick="openChapters()">Chapters</button>
+      <span>The Mortal Matrix</span>
+    </div>
+
+   <!-- Book Frame -->
+    <div class="book-frame">
+      <div id="page" class="page"></div>
+    </div>
+
+    
       <!-- Navigation -->
     <div class="nav-buttons">
       <button id="prevBtn" onclick="prevPage()">← Previous</button>
