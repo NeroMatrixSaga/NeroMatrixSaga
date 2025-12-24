@@ -146,12 +146,16 @@
     .chapter-heading,
     .prologue-heading {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
       font-family: 'Inter', sans-serif;
-      letter-spacing: 2px;
-      font-size: 0.8rem;
+      letter-spacing: 3px;
+      font-size: 0.75rem;
       color: #ECECF2;
       opacity: 0.85;
+    }
+    
+    .page p {
+      margin-bottom: 1.2em;
     }
 
     /* ================= NAVIGATION ================= */
@@ -308,7 +312,36 @@
 <script>
   const pages = [
     `<div class="cover-image" style="background-image: url('assets/cover.webp');"></div>`,
-    `<div class="prologue-heading">PROLOGUE</div><p>[Prologue text]</p>`,
+    /* Page 2 — Prologue starts */
+    `
+      <div class="prologue-heading">PROLOGUE</div>
+    
+      <p>
+      The day meant to stand as humanity’s greatest triumph became the 
+      blade that shattered reality itself.
+      </p>
+    
+      <p>
+      A single failed experiment tore through the perfectly balanced
+      matrix of life. The laws that governed existence fractured, and 
+      through the rupture emerged something alien—an inversion of 
+      creation. From a realm later named Cataclysm, beings formed of
+      dark cosmic energies crossed into the human world, driven by a
+      singular, insatiable hunger: souls.
+      </p>
+    
+      <p>
+      Modern weapons were useless against them. Steel shattered. Fire
+      faded. Bullets passed through their forms as if striking empty space.
+      Only pure energy could wound them—and humanity possessed 
+      neither the knowledge nor the means to wield it.
+      </p>
+
+      <p>
+      They spread like a plague.
+      </p>
+      
+    `,
     `<p>[Prologue continues]</p>`,
     `<div class="chapter-heading">CHAPTER I</div><p>[Chapter 1]</p>`
   ];
