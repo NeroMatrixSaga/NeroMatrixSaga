@@ -224,6 +224,15 @@
       color: #f72119; /* Red accent */
       text-transform: uppercase;
     }
+    /* Prologue Heading */
+    .prologue-heading {
+      text-align: center;
+      margin-bottom: 40px;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 3px;
+      font-size: 0.75rem;
+      opacity: 0.7;
+    }
 
     
   </style>
@@ -270,25 +279,30 @@
   </div>
 
   <script>
+        
     const pages = [
-    const pages = [
+      /* Page 1 — Cover */
       `
       <div class="cover-page">
         <h1>MORTAL MATRIX</h1>
         <h2>The Lie of Ascension</h2>
       </div>
       `,
+
+      /* Page 2 — Prologue starts */
       `
-      <div class="book-title">
-        <h1>THE MORTAL MATRIX</h1>
-        <h2>The Lie of Ascension</h2>
-      </div>
-      <p>[Prologue text begins here…]</p>
-      <p>[Replace this with your real prologue opening.]</p>
+      <div class="prologue-heading">PROLOGUE</div>
+      <p>[Prologue opening paragraph starts here…]</p>
+      <p>[Continue the prologue naturally, no recap.]</p>
       `,
+    
+      /* Page 3 — Prologue continues */
       `
       <p>[Prologue continues…]</p>
+      <p>[Build atmosphere, tension, mystery.]</p>
       `,
+    
+      /* Page 4 — Chapter I begins */
       `
       <div class="chapter-heading">CHAPTER I</div>
       <p>[Chapter 1 text begins here…]</p>
