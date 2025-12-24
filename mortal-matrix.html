@@ -64,19 +64,32 @@
 
     /* Chapters button BELOW titles */
     .chapters-btn {
-      margin-top: 26px;          /* 🔑 spacing below “Lie of Ascension” */
-      background: none;
-      border: none;
+      margin-top: 26px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
       color: #d6d6dc;
       font-family: 'Inter', sans-serif;
       font-size: 0.75rem;
       letter-spacing: 2px;
+      padding: 10px 26px;
       cursor: pointer;
-      opacity: 0.7;
+      opacity: 0.85;
+      transition: 
+        opacity 0.25s ease,
+        border-color 0.25s ease,
+        background-color 0.25s ease,
+        transform 0.2s ease;
     }
     
     .chapters-btn:hover {
       opacity: 1;
+      border-color: rgba(255,255,255,0.35);
+      background-color: rgba(255,255,255,0.05);
+      transform: translateY(-1px);
+    }
+    
+    .chapters-btn:active {
+      transform: translateY(0);
     }
     
     .title-block {
