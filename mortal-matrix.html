@@ -29,14 +29,21 @@
     /* Header */
     .top-bar {
       width: 100%;
-      padding: 40px 20px 30px;
+      padding: 40px 0px 30px;
       display: flex;
       flex-direction: column;   /* 🔑 stack vertically */
       align-items: center;
       justify-content: center;
       text-align: center;
     }
-
+    .top-bar-inner {
+      width: 100%;
+      max-width: 420px;       /* 🔑 SAME AS book-frame */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
 
 
     .top-bar button {
@@ -294,15 +301,17 @@
 
     <!-- Top Bar -->
     <div class="top-bar">
-
-      <div class="title-block">
-        <span class="saga-title">THE NEROMATRIX SAGA</span>
-        <span class="book-title">MORTAL MATRIX · BOOK I</span>
-        <span class="chapter-title">THE LIE OF ASCENSION</span>
+      <div class="top-bar-inner">
+    
+        <div class="title-block">
+          <span class="saga-title">THE NEROMATRIX SAGA</span>
+          <span class="book-title">MORTAL MATRIX · BOOK I</span>
+          <span class="chapter-title">THE LIE OF ASCENSION</span>
+        </div>
+    
+        <button class="chapters-btn" onclick="openChapters()">Chapters</button>
+    
       </div>
-    
-      <button class="chapters-btn" onclick="openChapters()">Chapters</button>
-    
     </div>
 
    <!-- Book Frame -->
