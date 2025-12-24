@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -11,8 +11,8 @@
   <style>
     body {
       margin: 0;
-      background-color: #070709;
-      color: #d6d6dc;
+      background-color: #0E0E11;
+      color: #D6D6DC;
       font-family: 'Merriweather', serif;
       line-height: 1.9;
       overflow-x: hidden;
@@ -20,183 +20,174 @@
 
     main {
       max-width: 760px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: auto;
       padding: 20px 20px 60px;
       box-sizing: border-box;
     }
 
-    /* Header */
+    /* ================= HEADER ================= */
+
     .top-bar {
       width: 100%;
-      padding: 40px 0px 30px;
+      padding: 40px 0 30px;
       display: flex;
-      flex-direction: column;   /* 🔑 stack vertically */
-      align-items: center;
       justify-content: center;
-      text-align: center;
     }
+
     .top-bar-inner {
       width: 100%;
-      max-width: 420px;       /* 🔑 SAME AS book-frame */
+      max-width: 420px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
     }
 
-
-    .top-bar button {
-      margin-top: 22px;         /* 🔑 gap below titles */
-      background: none;
-      border: none;
-      color: #e6e6eb;
-      font-family: 'Inter', sans-serif;
+    .saga-title {
+      font-family: 'Orbitron', sans-serif;
       font-size: 0.8rem;
       letter-spacing: 2px;
-      cursor: pointer;
-      opacity: 0.7;
-    }
-    
-    .top-bar button:hover {
-      opacity: 1;
+      color: #E0E0E6;
+      opacity: 0.75;
     }
 
-    /* Chapters button BELOW titles */
-    .chapters-btn {
+    .book-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+      margin-top: 4px;
+      color: #ECECF2;
+    }
+
+    .chapter-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      margin-top: 6px;
+      color: #E0E0E6;
+      opacity: 0.7;
+    }
+
+    /* ================= BUTTON STYLE ================= */
+
+    .outline-btn {
       margin-top: 26px;
       background: transparent;
-      border: 1px solid rgba(255,255,255,0.15);
-      color: #d6d6dc;
+      border: 1px solid #E0E0E6;
+      color: #E0E0E6;
       font-family: 'Inter', sans-serif;
       font-size: 0.75rem;
       letter-spacing: 2px;
       padding: 10px 26px;
       cursor: pointer;
-      opacity: 0.85;
-      transition: 
+      opacity: 0.9;
+      transition:
         opacity 0.25s ease,
         border-color 0.25s ease,
         background-color 0.25s ease,
         transform 0.2s ease;
     }
-    
-    .chapters-btn:hover {
+
+    .outline-btn:hover:not(:disabled) {
       opacity: 1;
-      border-color: rgba(255,255,255,0.35);
-      background-color: rgba(255,255,255,0.05);
+      border-color: #8A7CF0;
+      background-color: rgba(138,124,240,0.08);
       transform: translateY(-1px);
     }
-    
-    .chapters-btn:active {
+
+    .outline-btn:active:not(:disabled) {
       transform: translateY(0);
     }
-    
-    .title-block {
-      max-width: 100%;
+
+    .outline-btn:disabled {
+      opacity: 0.3;
+      border-color: rgba(224,224,230,0.25);
+      cursor: default;
+    }
+
+    /* ================= BOOK FRAME ================= */
+
+    .book-frame {
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 5.5 / 8.5;
+      background: #111118;
+      box-shadow:
+        0 20px 40px rgba(0,0,0,0.6),
+        inset 0 0 0 1px rgba(255,255,255,0.05);
       margin: 0 auto;
-    }
-    
-    .saga-title {
-      display: block;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      opacity: 0.65;
-    }
-
-    
-    /* Book Title (Page 1 only) */
-   .book-title {
-      display: block;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.95rem;
-      letter-spacing: 2px;
-      margin-top: 2px;
-    }
-    .chapter-title {
-      display: block;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.8rem;
-      opacity: 0.6;
-      margin-top: 6px;
+      padding: 32px 26px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 2px;
+      box-sizing: border-box;
     }
 
-    .book-title h1 {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-      letter-spacing: 1px;
-    }
-
-    .book-title h2 {
-      font-size: 1rem;
-      font-weight: 300;
-      opacity: 0.7;
-      letter-spacing: 1px;
-    }
-
-    /* Chapter Heading */
-    .chapter-heading {
-      text-align: center;
-      margin-bottom: 40px;
-      font-family: 'Inter', sans-serif;
-      letter-spacing: 2px;
-      font-size: 0.8rem;
-      opacity: 0.7;
-    }
-
-    /* Page Container */
     .page {
-      opacity: 1;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      scrollbar-width: none;
+      color: #D6D6DC;
       transition: opacity 0.4s ease;
+    }
+
+    .page::-webkit-scrollbar {
+      display: none;
     }
 
     .fade-out {
       opacity: 0;
     }
 
-    /* Navigation */
+    /* ================= HEADINGS ================= */
+
+    .chapter-heading,
+    .prologue-heading {
+      text-align: center;
+      margin-bottom: 40px;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 2px;
+      font-size: 0.8rem;
+      color: #ECECF2;
+      opacity: 0.85;
+    }
+
+    /* ================= NAVIGATION ================= */
+
     .nav-buttons {
       display: flex;
       justify-content: space-between;
-      margin-top: 60px;
-      font-family: 'Inter', sans-serif;
+      max-width: 420px;
+      margin: 60px auto 0;
     }
 
-    .nav-buttons button {
-      background: none;
-      border: none;
-      color: #d6d6dc;
-      cursor: pointer;
-      font-size: 0.85rem;
-      letter-spacing: 1px;
-      opacity: 0.8;
-    }
+    /* ================= FOOTER ================= */
 
-    .nav-buttons button:disabled {
-      opacity: 0.3;
-      cursor: default;
-    }
-
-    /* Footer */
     footer {
       text-align: center;
       margin-top: 80px;
       font-family: 'Inter', sans-serif;
       font-size: 0.75rem;
-      opacity: 0.5;
+      opacity: 0.6;
     }
 
     footer a {
-      color: #d6d6dc;
+      color: #6FAFC7;
       text-decoration: none;
     }
 
-    /* Chapter Overlay */
+    footer a:hover {
+      color: #8A7CF0;
+    }
+
+    /* ================= OVERLAY ================= */
+
     .overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.9);
+      background: rgba(14,14,17,0.95);
       display: none;
       justify-content: center;
       align-items: center;
@@ -206,241 +197,144 @@
     .overlay-content {
       text-align: center;
       font-family: 'Inter', sans-serif;
+      color: #E0E0E6;
     }
 
     .overlay-content h3 {
       margin-bottom: 30px;
       letter-spacing: 2px;
       font-size: 0.9rem;
+      color: #ECECF2;
     }
 
     .overlay-content button {
       display: block;
       background: none;
       border: none;
-      color: #d6d6dc;
+      color: #6FAFC7;
       font-size: 0.85rem;
       margin: 12px auto;
       cursor: pointer;
-      opacity: 0.85;
+      opacity: 0.9;
+    }
+
+    .overlay-content button:hover {
+      color: #8A7CF0;
     }
 
     .overlay-content button.locked {
       opacity: 0.4;
       cursor: default;
+      color: #D6D6DC;
     }
-    /* Book page frame */
-    .book-frame {
-      position: relative;
-      width: 100%;
-      max-width: 420px;
-      aspect-ratio: 5.5 / 8.5;
-      background: #0c0c10;
-      box-shadow: 
-        0 20px 40px rgba(0,0,0,0.6),
-        inset 0 0 0 1px rgba(255,255,255,0.05);
-      margin-left: auto;
-      margin-right: auto;
-      padding: 32px 26px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      overflow: hidden;
-      border-radius: 2px;
-      box-sizing: border-box;   /* 🔴 critical */
-    }
-
-    /* Inner page */
-    .page {
-      width: 100%;
-      height: 100%;
-      overflow-y: auto;
-      padding-right: 6px;
-      scrollbar-width: none;         /* Firefox */
-    }  
-
-    .page::-webkit-scrollbar {
-      display: none;                 /* Chrome/Safari */
-    }
-
-    @media (max-width: 480px) {
-      .book-frame {
-        width: calc(100vw - 40px); /* exact centering */
-        max-width: none;
-        padding: 26px 20px;
-      }
-    }
-
-      /* Cover Page */
-    .cover-page {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    .cover-page h1 {
-      font-size: 2.4rem;
-      letter-spacing: 2px;
-      margin-bottom: 16px;
-    }
-
-    .cover-page h2 {
-      font-size: 1rem;
-      font-weight: 400;
-      letter-spacing: 2px;
-      color: #f72119; /* Red accent */
-      text-transform: uppercase;
-    }
-    /* Prologue Heading */
-    .prologue-heading {
-      text-align: center;
-      margin-bottom: 40px;
-      font-family: 'Inter', sans-serif;
-      letter-spacing: 3px;
-      font-size: 0.75rem;
-      opacity: 0.7;
-    }
-
-    
   </style>
 </head>
 
 <body>
 
-  <main>
+<main>
 
-    <!-- Top Bar -->
-    <div class="top-bar">
-      <div class="top-bar-inner">
-    
-        <div class="title-block">
-          <span class="saga-title">THE NEROMATRIX SAGA</span>
-          <span class="book-title">MORTAL MATRIX · BOOK I</span>
-          <span class="chapter-title">THE LIE OF ASCENSION</span>
-        </div>
-    
-        <button class="chapters-btn" onclick="openChapters()">Chapters</button>
-    
-      </div>
-    </div>
+  <!-- HEADER -->
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <span class="saga-title">THE NEROMATRIX SAGA</span>
+      <span class="book-title">MORTAL MATRIX · BOOK I</span>
+      <span class="chapter-title">THE LIE OF ASCENSION</span>
 
-   <!-- Book Frame -->
-    <div class="book-frame">
-      <div id="page" class="page"></div>
-    </div>
-
-    
-      <!-- Navigation -->
-    <div class="nav-buttons">
-      <button id="prevBtn" onclick="prevPage()">← Previous</button>
-      <button id="nextBtn" onclick="nextPage()">Next →</button>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-      <a href="index.html">← Return to Gateway</a>
-    </footer>
-
-  </main>
-
-  <!-- Chapter Overlay -->
-  <div class="overlay" id="chapterOverlay">
-    <div class="overlay-content">
-      <h3>THE MORTAL MATRIX</h3>
-      <button onclick="goToPage(0)">Prologue</button>
-      <button onclick="goToPage(2)">Chapter I</button>
-      <button class="locked">Chapter II — Restricted</button>
-      <button onclick="closeChapters()">Close</button>
+      <button class="outline-btn" onclick="openChapters()">Chapters</button>
     </div>
   </div>
 
-  <script>
-        
-    const pages = [
-      /* Page 1 — Cover */
-      `
-      <div class="cover-page">
-        <h1>MORTAL MATRIX</h1>
-        <h2>The Lie of Ascension</h2>
-      </div>
-      `,
+  <!-- BOOK -->
+  <div class="book-frame">
+    <div id="page" class="page"></div>
+  </div>
 
-      /* Page 2 — Prologue starts */
-      `
-      <div class="prologue-heading">PROLOGUE</div>
-      <p>[Prologue opening paragraph starts here…]</p>
-      <p>[Continue the prologue naturally, no recap.]</p>
-      `,
-    
-      /* Page 3 — Prologue continues */
-      `
-      <p>[Prologue continues…]</p>
-      <p>[Build atmosphere, tension, mystery.]</p>
-      `,
-    
-      /* Page 4 — Chapter I begins */
-      `
-      <div class="chapter-heading">CHAPTER I</div>
-      <p>[Chapter 1 text begins here…]</p>
-      `
-    ];
+  <!-- NAV -->
+  <div class="nav-buttons">
+    <button id="prevBtn" class="outline-btn" onclick="prevPage()">← Previous</button>
+    <button id="nextBtn" class="outline-btn" onclick="nextPage()">Next →</button>
+  </div>
 
-    let currentPage = 0;
-    const pageEl = document.getElementById("page");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
+  <!-- FOOTER -->
+  <footer>
+    <a href="index.html">← Return to Gateway</a>
+  </footer>
 
-    function renderPage() {
-      pageEl.innerHTML = pages[currentPage];
-      prevBtn.disabled = currentPage === 0;
-      nextBtn.disabled = currentPage === pages.length - 1;
-    }
+</main>
 
-    function nextPage() {
-      if (currentPage < pages.length - 1) {
-        pageEl.classList.add("fade-out");
-        setTimeout(() => {
-          currentPage++;
-          renderPage();
-          pageEl.classList.remove("fade-out");
-        }, 400);
-      }
-    }
+<!-- OVERLAY -->
+<div class="overlay" id="chapterOverlay">
+  <div class="overlay-content">
+    <h3>THE MORTAL MATRIX</h3>
+    <button onclick="goToPage(0)">Prologue</button>
+    <button onclick="goToPage(2)">Chapter I</button>
+    <button class="locked">Chapter II — Restricted</button>
+    <button onclick="closeChapters()">Close</button>
+  </div>
+</div>
 
-    function prevPage() {
-      if (currentPage > 0) {
-        pageEl.classList.add("fade-out");
-        setTimeout(() => {
-          currentPage--;
-          renderPage();
-          pageEl.classList.remove("fade-out");
-        }, 400);
-      }
-    }
+<script>
+  const pages = [
+    `<div class="cover-page"><h1>MORTAL MATRIX</h1><h2>The Lie of Ascension</h2></div>`,
+    `<div class="prologue-heading">PROLOGUE</div><p>[Prologue text]</p>`,
+    `<p>[Prologue continues]</p>`,
+    `<div class="chapter-heading">CHAPTER I</div><p>[Chapter 1]</p>`
+  ];
 
-    function openChapters() {
-      document.getElementById("chapterOverlay").style.display = "flex";
-    }
+  let currentPage = 0;
+  const pageEl = document.getElementById("page");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
 
-    function closeChapters() {
-      document.getElementById("chapterOverlay").style.display = "none";
-    }
+  function renderPage() {
+    pageEl.innerHTML = pages[currentPage];
+    prevBtn.disabled = currentPage === 0;
+    nextBtn.disabled = currentPage === pages.length - 1;
+  }
 
-    function goToPage(index) {
-      closeChapters();
+  function nextPage() {
+    if (currentPage < pages.length - 1) {
       pageEl.classList.add("fade-out");
       setTimeout(() => {
-        currentPage = index;
+        currentPage++;
         renderPage();
         pageEl.classList.remove("fade-out");
       }, 400);
     }
+  }
 
-    renderPage();
-  </script>
+  function prevPage() {
+    if (currentPage > 0) {
+      pageEl.classList.add("fade-out");
+      setTimeout(() => {
+        currentPage--;
+        renderPage();
+        pageEl.classList.remove("fade-out");
+      }, 400);
+    }
+  }
+
+  function openChapters() {
+    document.getElementById("chapterOverlay").style.display = "flex";
+  }
+
+  function closeChapters() {
+    document.getElementById("chapterOverlay").style.display = "none";
+  }
+
+  function goToPage(index) {
+    closeChapters();
+    pageEl.classList.add("fade-out");
+    setTimeout(() => {
+      currentPage = index;
+      renderPage();
+      pageEl.classList.remove("fade-out");
+    }, 400);
+  }
+
+  renderPage();
+</script>
 
 </body>
 </html>
