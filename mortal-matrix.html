@@ -8,6 +8,9 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
 
+  <!-- Preload cover image -->
+  <link rel="preload" as="image" href="assets/cover.webp">
+
   <style>
     body {
       margin: 0;
@@ -67,7 +70,7 @@
       opacity: 0.7;
     }
 
-    /* ================= BUTTON STYLE ================= */
+    /* ================= BUTTONS ================= */
 
     .outline-btn {
       margin-top: 26px;
@@ -80,22 +83,13 @@
       padding: 10px 26px;
       cursor: pointer;
       opacity: 0.9;
-      transition:
-        opacity 0.25s ease,
-        border-color 0.25s ease,
-        background-color 0.25s ease,
-        transform 0.2s ease;
+      transition: opacity 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
     }
 
     .outline-btn:hover:not(:disabled) {
       opacity: 1;
       border-color: #8A7CF0;
       background-color: rgba(138,124,240,0.08);
-      transform: translateY(-1px);
-    }
-
-    .outline-btn:active:not(:disabled) {
-      transform: translateY(0);
     }
 
     .outline-btn:disabled {
@@ -111,9 +105,8 @@
       max-width: 420px;
       aspect-ratio: 5.5 / 8.5;
       background: #111118;
-      box-shadow:
-        0 20px 40px rgba(0,0,0,0.6),
-        inset 0 0 0 1px rgba(255,255,255,0.05);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6),
+                  inset 0 0 0 1px rgba(255,255,255,0.05);
       margin: 0 auto;
       padding: 32px 26px;
       display: flex;
@@ -124,26 +117,38 @@
       box-sizing: border-box;
     }
 
+    /* ================= PAGE + SCROLLBAR ================= */
+
     .page {
       width: 100%;
       height: 100%;
       overflow-y: auto;
-      scrollbar-width: none;
-      color: #D6D6DC;
+      padding-right: 10px;
+      box-sizing: border-box;
+      scrollbar-width: thin;
+      scrollbar-color: #6FAFC7 transparent;
       transition: opacity 0.4s ease;
     }
 
     .page::-webkit-scrollbar {
-      display: none;
+      width: 6px;
+    }
+
+    .page::-webkit-scrollbar-thumb {
+      background-color: rgba(111,175,199,0.45);
+      border-radius: 10px;
+    }
+
+    .page::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(138,124,240,0.65);
     }
 
     .fade-out {
       opacity: 0;
     }
 
-    /* ================= HEADINGS ================= */
+    /* ================= PROLOGUE ================= */
 
-    .chapter-heading,
     .prologue-heading {
       text-align: center;
       margin-bottom: 36px;
@@ -153,12 +158,12 @@
       color: #ECECF2;
       opacity: 0.85;
     }
-    
+
     .page p {
       margin-bottom: 1.2em;
     }
 
-    /* ================= NAVIGATION ================= */
+    /* ================= NAV ================= */
 
     .nav-buttons {
       display: flex;
@@ -186,82 +191,23 @@
       color: #8A7CF0;
     }
 
-    /* ================= OVERLAY ================= */
-
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(14,14,17,0.95);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 10;
-    }
-
-    .overlay-content {
-      text-align: center;
-      font-family: 'Inter', sans-serif;
-      color: #E0E0E6;
-    }
-
-    .overlay-content h3 {
-      margin-bottom: 30px;
-      letter-spacing: 2px;
-      font-size: 0.9rem;
-      color: #ECECF2;
-    }
-
-    .overlay-content button {
-      display: block;
-      background: none;
-      border: none;
-      color: #6FAFC7;
-      font-size: 0.85rem;
-      margin: 12px auto;
-      cursor: pointer;
-      opacity: 0.9;
-    }
-
-    .overlay-content button:hover {
-      color: #8A7CF0;
-    }
-
-    .overlay-content button.locked {
-      opacity: 0.4;
-      cursor: default;
-      color: #D6D6DC;
-    }
-
-    /* ================= IMAGE COVER PAGE ================= */
+    /* ================= COVER IMAGE ================= */
 
     .cover-image {
+      position: relative;
       width: 100%;
       height: 100%;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      border-radius: 1px;
     }
+
     .cover-image::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(
-        circle at center,
-        transparent 60%,
-        rgba(0,0,0,0.45) 100%
-      );
+      background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.45));
     }
-    .cover-image {
-      animation: coverFade 1.2s ease;
-    }
-    
-    @keyframes coverFade {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-
   </style>
 </head>
 
@@ -269,120 +215,52 @@
 
 <main>
 
-  <!-- HEADER -->
   <div class="top-bar">
     <div class="top-bar-inner">
       <span class="saga-title">THE NEROMATRIX SAGA</span>
       <span class="book-title">MORTAL MATRIX · BOOK I</span>
       <span class="chapter-title">THE LIE OF ASCENSION</span>
-
       <button class="outline-btn" onclick="openChapters()">Chapters</button>
     </div>
   </div>
 
-  <!-- BOOK -->
   <div class="book-frame">
     <div id="page" class="page"></div>
   </div>
 
-  <!-- NAV -->
   <div class="nav-buttons">
     <button id="prevBtn" class="outline-btn" onclick="prevPage()">← Previous</button>
     <button id="nextBtn" class="outline-btn" onclick="nextPage()">Next →</button>
   </div>
 
-  <!-- FOOTER -->
   <footer>
     <a href="index.html">← Return to Gateway</a>
   </footer>
 
 </main>
 
-<!-- OVERLAY -->
-<div class="overlay" id="chapterOverlay">
-  <div class="overlay-content">
-    <h3>THE MORTAL MATRIX</h3>
-    <button onclick="goToPage(0)">Prologue</button>
-    <button onclick="goToPage(2)">Chapter I</button>
-    <button class="locked">Chapter II — Restricted</button>
-    <button onclick="closeChapters()">Close</button>
-  </div>
-</div>
-
 <script>
   const pages = [
-    `<div class="cover-image" style="background-image: url('assets/cover.webp');"></div>`,
-    /* Page 2 — Prologue starts */
-    `
-    <div class="prologue-heading">PROLOGUE</div>
-    
-    <p>
-    The day meant to stand as humanity’s greatest triumph became the blade that shattered reality itself.
-    </p>
-    
-    <p>
-    A single failed experiment tore through the perfectly balanced matrix of life. The laws that governed existence fractured, and through the rupture emerged something aberrant—an inversion of creation.
-    </p>
-    
-    <p>
-    From a realm later named Cataclysm, beings formed of dark cosmic energies crossed into the human world, driven by a singular, insatiable hunger: souls.
-    </p>
-    `,
-    
-    `
-    <p>
-    Modern weapons were useless against them. Steel shattered. Fire faded. Bullets passed through their forms as if striking empty space.
-    </p>
-    
-    <p>
-    Only pure energy could wound them—and humanity possessed neither the knowledge nor the means to wield it.
-    </p>
-    
-    <p>
-    They spread like a plague.
-    </p>
-    
-    <p>
-    Within hours, cities were erased from maps. Nations collapsed overnight. The massacre was so complete that survival itself ceased to be a hope and became a prayer—for one more minute, one more breath.
-    </p>
-    `,
 
-    `
-    <p>
-    As extinction loomed and the living stood at the brink of oblivion—
-    </p>
-    
-    <p>
-    They arrived.
-    </p>
-    
-    <p>
-    Their origin was unknown. Their power defied every measurable law of reality. They moved like lightning—unseen, unfathomable.
-    </p>
-    
-    <p>
-    No eye could follow them. No instrument could record them. The creatures fell before their advance, erased as though they had never existed.
-    </p>
-    `,
-    `
-    <p>
-    And just as suddenly as they appeared, they vanished, leaving behind no trace of their presence.
-    </p>
-    
-    <p>
-    When silence finally reclaimed the world, humanity had been reduced to remnants.
-    </p>
-    
-    <p>
-    Democracy collapsed beneath the weight of survival. Equality became a forgotten myth. Those with power rose to rule, while the remnants of humanity retreated behind colossal walls—barriers separating the living from the dead.
-    </p>
-    
-    <p>
-    And within those walls, as the survivors clung to existence, the true horrors of the matrix slowly began to reveal themselves.
-    </p>
-    `,
-    
-    `<div class="chapter-heading">CHAPTER I</div><p>[Chapter 1]</p>`
+    `<div class="cover-image" style="background-image:url('assets/cover.webp');"></div>`,
+
+    `<div class="prologue-heading">PROLOGUE</div>
+     <p>The day meant to stand as humanity’s greatest triumph became the blade that shattered reality itself.</p>
+     <p>A single failed experiment tore through the perfectly balanced matrix of life. The laws that governed existence fractured, and through the rupture emerged something aberrant—an inversion of creation.</p>
+     <p>From a realm later named Cataclysm, beings formed of dark cosmic energies crossed into the human world, driven by a singular, insatiable hunger: souls.</p>`,
+
+    `<p>Modern weapons were useless against them. Steel shattered. Fire faded. Bullets passed through their forms as if striking empty space.</p>
+     <p>Only pure energy could wound them—and humanity possessed neither the knowledge nor the means to wield it.</p>
+     <p>They spread like a plague.</p>
+     <p>Within hours, cities were erased from maps. Nations collapsed overnight.</p>`,
+
+    `<p>As extinction loomed and the living stood at the brink of oblivion—</p>
+     <p>They arrived.</p>
+     <p>Their origin was unknown. Their power defied every measurable law of reality.</p>`,
+
+    `<p>When silence finally reclaimed the world, humanity had been reduced to remnants.</p>
+     <p>Democracy collapsed. Equality became a forgotten myth.</p>
+     <p>And within those walls, the true horrors of the matrix slowly began to reveal themselves.</p>`
   ];
 
   let currentPage = 0;
@@ -392,6 +270,7 @@
 
   function renderPage() {
     pageEl.innerHTML = pages[currentPage];
+    pageEl.scrollTop = 0;   // 🔑 FIX: always start at top
     prevBtn.disabled = currentPage === 0;
     nextBtn.disabled = currentPage === pages.length - 1;
   }
@@ -403,7 +282,7 @@
         currentPage++;
         renderPage();
         pageEl.classList.remove("fade-out");
-      }, 400);
+      }, 300);
     }
   }
 
@@ -414,26 +293,8 @@
         currentPage--;
         renderPage();
         pageEl.classList.remove("fade-out");
-      }, 400);
+      }, 300);
     }
-  }
-
-  function openChapters() {
-    document.getElementById("chapterOverlay").style.display = "flex";
-  }
-
-  function closeChapters() {
-    document.getElementById("chapterOverlay").style.display = "none";
-  }
-
-  function goToPage(index) {
-    closeChapters();
-    pageEl.classList.add("fade-out");
-    setTimeout(() => {
-      currentPage = index;
-      renderPage();
-      pageEl.classList.remove("fade-out");
-    }, 400);
   }
 
   renderPage();
