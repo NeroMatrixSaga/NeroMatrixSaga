@@ -66,8 +66,18 @@
     }
 
     .support-btn:hover {
-      opacity: 0.9;
+          opacity: 0.9;
+        }
+        .upi-btn {
+      margin-top: 14px;
+      border-color: #2e7d32;
+      color: #dfffe5;
     }
+    
+    .upi-btn:hover {
+      opacity: 0.95;
+    }
+
 
     .back-link {
       margin-top: 35px; /* 🔑 next line spacing */
@@ -108,7 +118,12 @@
        target="_blank" 
        rel="noopener noreferrer"
        class="support-btn">
-       Support the Creator
+       Support via Paypal
+    </a>
+
+    <a href="upi://pay?pa=YOUR_UPI_ID&pn=Neromatrix%20Saga&cu=INR"
+       class="support-btn upi-btn">
+       Support via UPI
     </a>
 
     <!-- 🔑 next line -->
