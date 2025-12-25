@@ -172,6 +172,8 @@
     .nav-buttons {
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      gap: 12px;
       max-width: 420px;
       margin: 60px auto 0;
     }
@@ -282,6 +284,7 @@
 
   <div class="nav-buttons">
     <button id="prevBtn" class="outline-btn" onclick="prevPage()">← Previous</button>
+    <button class="outline-btn" onclick="toggleFullscreen()">Fullscreen</button>
     <button id="nextBtn" class="outline-btn" onclick="nextPage()">Next →</button>
   </div>
 
@@ -359,6 +362,11 @@
       }, 300);
     }
   }
+  document.addEventListener("fullscreenchange", () => {
+  const btn = document.querySelector('[onclick="toggleFullscreen()"]');
+  if (!btn) return;
+  btn.textContent = document.fullscreenElement ? "Exit Fullscreen" : "Fullscreen";
+  });
 
   function prevPage() {
     if (currentPage > 0) {
