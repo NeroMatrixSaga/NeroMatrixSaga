@@ -175,7 +175,8 @@
       align-items: center;
       gap: 12px;
       max-width: 420px;
-      margin: 60px auto 0;
+      width: 100%;
+      margin: 20px auto 0;
     }
 
     /* ================= FOOTER ================= */
@@ -362,6 +363,16 @@
       }, 300);
     }
   }
+  
+    function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  }
+
+  
   document.addEventListener("fullscreenchange", () => {
   const btn = document.querySelector('[onclick="toggleFullscreen()"]');
   if (!btn) return;
