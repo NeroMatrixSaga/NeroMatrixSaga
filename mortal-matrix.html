@@ -191,13 +191,51 @@
       color: #8A7CF0;
     }
 
+    /* ================= CHAPTER OVERLAY ================= */
+    
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(14,14,17,0.95);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 20;
+    }
+    
+    .overlay-content {
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .overlay-content h3 {
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+      color: #ECECF2;
+    }
+    
+    .overlay-content button {
+      display: block;
+      background: none;
+      border: none;
+      color: #6FAFC7;
+      margin: 12px auto;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    
+    .overlay-content button:hover {
+      color: #8A7CF0;
+    }
+
+    
     /* ================= COVER IMAGE ================= */
 
     .cover-image {
       position: relative;
       width: 100%;
       height: 100%;
-      background-size: cover;
+      background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
     }
@@ -214,7 +252,17 @@
 <body>
 
 <main>
+  <!-- CHAPTER OVERLAY -->
+  <div class="overlay" id="chapterOverlay">
+    <div class="overlay-content">
+      <h3>CONTENTS</h3>
+      <button onclick="goToPage(0)">Cover</button>
+      <button onclick="goToPage(1)">Prologue</button>
+      <button onclick="closeChapters()">Close</button>
+    </div>
+  </div>
 
+  
   <div class="top-bar">
     <div class="top-bar-inner">
       <span class="saga-title">THE NEROMATRIX SAGA</span>
@@ -278,8 +326,23 @@
   function renderPage() {
     pageEl.innerHTML = pages[currentPage];
     pageEl.scrollTop = 0;   // 🔑 FIX: always start at top
+    // 🔑 Remove padding on cover only
+    pageEl.style.padding = currentPage === 0 ? "0" : "32px 26px";
     prevBtn.disabled = currentPage === 0;
     nextBtn.disabled = currentPage === pages.length - 1;
+  }
+  function openChapters() {
+    document.getElementById("chapterOverlay").style.display = "flex";
+  }
+  
+  function closeChapters() {
+    document.getElementById("chapterOverlay").style.display = "none";
+  }
+  
+  function goToPage(index) {
+    currentPage = index;
+    closeChapters();
+    renderPage();
   }
 
   function nextPage() {
