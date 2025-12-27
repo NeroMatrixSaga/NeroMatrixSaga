@@ -125,6 +125,8 @@
       overflow-y: auto;
       padding-right: 10px;
       box-sizing: border-box;
+      font-size: 0.82rem;
+      line-height: 1.45;
       word-spacing: 0.02em;
       scrollbar-width: thin;
       scrollbar-color: #6FAFC7 transparent;
@@ -161,7 +163,7 @@
     }
 
     .page p {
-      margin-bottom: 1.2em;
+      margin-bottom: 0.75em;
       text-align: justify;
       text-justify: inter-word;
       hyphens: auto;
@@ -361,7 +363,7 @@
     pageEl.innerHTML = pages[currentPage];
     pageEl.scrollTop = 0;   // 🔑 FIX: always start at top
     // 🔑 Remove padding on cover only
-    pageEl.style.padding = currentPage === 0 ? "0" : "32px 26px";
+    pageEl.style.padding = currentPage === 0 ? "0" : "24px 22px";
     prevBtn.disabled = currentPage === 0;
     nextBtn.disabled = currentPage === pages.length - 1;
   }
