@@ -175,11 +175,24 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      gap: 18px;
       max-width: 420px;
       width: 100%;
       margin: 20px auto 0;
     }
+    /* Icon-only navigation buttons */
+    .nav-icon {
+      font-size: 1rem;              /* icon size */
+      letter-spacing: 0;
+      padding: 6px 10px;
+      min-width: 38px;
+      min-height: 38px;
+      display: flex;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+    }
+
 
     /* ================= FOOTER ================= */
 
@@ -312,10 +325,18 @@
   </div>
 
   <div class="nav-buttons">
-    <button id="prevBtn" class="outline-btn" onclick="prevPage()">← Previous</button>
-    <button class="outline-btn" onclick="toggleFullscreen()">Fullscreen</button>
-    <button id="nextBtn" class="outline-btn" onclick="nextPage()">Next →</button>
-  </div>
+      <button id="prevBtn" class="outline-btn nav-icon" onclick="prevPage()" aria-label="Previous page">
+        ←
+      </button>
+    
+      <button class="outline-btn nav-icon" onclick="toggleFullscreen()" aria-label="Toggle fullscreen">
+        ⛶
+      </button>
+    
+      <button id="nextBtn" class="outline-btn nav-icon" onclick="nextPage()" aria-label="Next page">
+        →
+      </button>
+    </div>
 
   <footer>
     <a href="index.html">← Return to Gateway</a>
