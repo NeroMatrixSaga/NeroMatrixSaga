@@ -116,6 +116,11 @@
       border-radius: 2px;
       box-sizing: border-box;
     }
+    /* Full-bleed cover mode */
+    .book-frame.cover-mode {
+      padding: 0;
+    }
+
 
     /* ================= PAGE + SCROLLBAR ================= */
 
@@ -265,7 +270,7 @@
       position: relative;
       width: 100%;
       height: 100%;
-      background-size: contain;
+      background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
@@ -395,13 +400,23 @@
   const nextBtn = document.getElementById("nextBtn");
 
   function renderPage() {
-    pageEl.innerHTML = pages[currentPage];
-    pageEl.scrollTop = 0;   // 🔑 FIX: always start at top
-    // 🔑 Remove padding on cover only
-    pageEl.style.padding = currentPage === 0 ? "0" : "24px 22px";
-    prevBtn.disabled = currentPage === 0;
-    nextBtn.disabled = currentPage === pages.length - 1;
-  }
+      pageEl.innerHTML = pages[currentPage];
+      pageEl.scrollTop = 0;
+    
+      const frame = document.querySelector(".book-frame");
+    
+      if (currentPage === 0) {
+        pageEl.style.padding = "0";
+        frame.classList.add("cover-mode");
+      } else {
+        pageEl.style.padding = "24px 22px";
+        frame.classList.remove("cover-mode");
+      }
+    
+      prevBtn.disabled = currentPage === 0;
+      nextBtn.disabled = currentPage === pages.length - 1;
+    }
+
   function openChapters() {
     document.getElementById("chapterOverlay").style.display = "flex";
   }
