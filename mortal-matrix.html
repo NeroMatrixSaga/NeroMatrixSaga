@@ -253,6 +253,25 @@
       inset: 0;
       background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.45));
     }
+    /* iOS fullscreen fallback */
+    .ios-fullscreen {
+      position: fixed;
+      inset: 0;
+      background: #0E0E11;
+      z-index: 9999;
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .ios-fullscreen + .nav-buttons,
+    .ios-fullscreen ~ footer,
+    .ios-fullscreen ~ .top-bar {
+      display: none;
+    }
+
+
+
+    
   </style>
 </head>
 
@@ -364,13 +383,23 @@
     }
   }
   
-    function toggleFullscreen() {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-    } else {
-      document.exitFullscreen();
+    function isIOS() {
+      return /iPhone|iPad|iPod/i.test(navigator.userAgent);
     }
-  }
+    
+    function toggleFullscreen() {
+      if (isIOS()) {
+        document.querySelector(".book-frame").classList.toggle("ios-fullscreen");
+        return;
+      }
+    
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
 
   
   document.addEventListener("fullscreenchange", () => {
