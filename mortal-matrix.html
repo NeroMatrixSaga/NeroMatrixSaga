@@ -192,6 +192,14 @@
       align-items: center;
       justify-content: center;
     }
+    .nav-icon[aria-label]:hover::after {
+      content: attr(aria-label);
+      position: absolute;
+      bottom: 120%;
+      font-size: 0.6rem;
+      opacity: 0.6;
+    }
+
 
 
     /* ================= FOOTER ================= */
@@ -329,13 +337,19 @@
         ←
       </button>
     
-      <button class="outline-btn nav-icon" onclick="toggleFullscreen()" aria-label="Toggle fullscreen">
-        ⛶
-      </button>
-    
-      <button id="nextBtn" class="outline-btn nav-icon" onclick="nextPage()" aria-label="Next page">
-        →
-      </button>
+       <button
+        id="fsBtn"
+        class="outline-btn nav-icon"
+        onclick="toggleFullscreen()"
+        aria-label="Toggle fullscreen"
+        >
+          ⛶
+        </button>
+
+      
+        <button id="nextBtn" class="outline-btn nav-icon" onclick="nextPage()" aria-label="Next page">
+          →
+        </button>
     </div>
 
   <footer>
@@ -430,14 +444,14 @@
       }
     }
 
+    const fsBtn = document.getElementById("fsBtn");
+    
+    document.addEventListener("fullscreenchange", () => {
+      if (!fsBtn) return;
+      fsBtn.textContent = document.fullscreenElement ? "⛶" : "⛶";
+    });
 
   
-  document.addEventListener("fullscreenchange", () => {
-  const btn = document.querySelector('[onclick="toggleFullscreen()"]');
-  if (!btn) return;
-  btn.textContent = document.fullscreenElement ? "Exit Fullscreen" : "Fullscreen";
-  });
-
   function prevPage() {
     if (currentPage > 0) {
       pageEl.classList.add("fade-out");
