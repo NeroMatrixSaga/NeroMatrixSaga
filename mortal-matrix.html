@@ -262,14 +262,19 @@
       padding-top: env(safe-area-inset-top);
       padding-bottom: env(safe-area-inset-bottom);
     }
-
-    /* Make nav & overlay visible in fullscreen */
-    .ios-fullscreen ~ .nav-buttons,
-    .ios-fullscreen ~ footer,
-    .ios-fullscreen ~ .top-bar {
+    
+    .ios-fullscreen ~ .nav-buttons {
       position: fixed;
+      bottom: env(safe-area-inset-bottom);
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 10000;
     }
+    
+    .overlay {
+      z-index: 10001;
+    }
+
 
 
 
