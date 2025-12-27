@@ -131,6 +131,40 @@
       opacity: 0.6;
       margin-top: 60px;
     }
+    
+    .social-links {
+  margin-top: 18px;
+}
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid #333;
+      transition: all 0.25s ease;
+    }
+    
+    .social-links a:hover {
+      border-color: #f72119;
+      box-shadow: 0 0 10px rgba(247, 33, 25, 0.6);
+    }
+    
+    .social-links svg {
+      width: 16px;
+      height: 16px;
+      fill: #e6e6eb;
+      transition: fill 0.25s ease;
+    }
+    
+    .social-links a:hover svg {
+      fill: #f72119;
+    }
+
+
+    
   </style>
 </head>
 
@@ -144,7 +178,19 @@
 
       <h1>THE NEROMATRIX SAGA</h1>
       <p>A fractured reality. A hidden war. Humanity on trial.</p>
-  
+
+          <div class="social-links">
+      <a href="https://www.instagram.com/neromatrixsaga" 
+         target="_blank" 
+         aria-label="Instagram">
+         
+        <!-- Instagram SVG Icon -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2a3 3 0 013 3v10a3 3 0 01-3 3H7a3 3 0 01-3-3V7a3 3 0 013-3h10zm-5 3.5A4.5 4.5 0 1016.5 12 4.505 4.505 0 0012 7.5zm0 7.4A2.9 2.9 0 1114.9 12 2.904 2.904 0 0112 14.9zm4.75-8.15a1.05 1.05 0 101.05 1.05 1.05 1.05 0 00-1.05-1.05z"/>
+        </svg>
+    
+      </a>
+    </div>
     </section>
 
     
