@@ -318,9 +318,23 @@
   <div class="overlay" id="chapterOverlay">
     <div class="overlay-content">
       <h3>CONTENTS</h3>
+      const lockedChapters = {
+        4: "Chapter 1 will be released on 05/01/2026"
+      };
       <button onclick="goToPage(0)">Cover</button>
       <button onclick="goToPage(1)">Prologue</button>
+      
+      <button
+        style="opacity:0.6; cursor:not-allowed;"
+        onclick="alert('Chapter 1 will be released on 05/01/2026')">
+        
+        Chapter 1 · Access Granted
+        <div style="font-size:0.65rem; margin-top:4px;">
+          Release: 05/01/2026
+        </div>
+      </button>
       <button onclick="closeChapters()">Close</button>
+
     </div>
   </div>
 
@@ -391,6 +405,14 @@
     <p>Those with power rose to rule, while the remnants of humanity retreated behind colossal walls—barriers separating the living from the dead.</p>
     <p>And within those walls, as the survivors clung to existence, the true horrors of the matrix slowly began to reveal themselves.</p>`,
 
+    `<div class="prologue-heading">CHAPTER 1</div>
+     <p style="text-align:center; letter-spacing:1.5px; opacity:0.85;">
+       ACCESS GRANTED</p>
+     <p style="margin-top:2em; text-align:center; opacity:0.6; font-size:0.78rem;">
+       🔒 This chapter will be released on<br>
+       <strong>05 / 01 / 2026</strong>
+     </p>`
+
   ];
 
   let currentPage = 0;
@@ -425,10 +447,15 @@
   }
   
   function goToPage(index) {
+    if (lockedChapters[index]) {
+      alert(lockedChapters[index]);
+      return;
+    }
     currentPage = index;
     closeChapters();
     renderPage();
   }
+
 
   function nextPage() {
     if (currentPage < pages.length - 1) {
