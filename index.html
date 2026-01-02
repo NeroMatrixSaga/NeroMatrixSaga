@@ -176,21 +176,27 @@
       transform: scale(1.05);
       opacity: 1;
     }
-    
     .matrix-image {
-      width: 120px;
-      max-width: 50vw;
-      margin: 20px auto 26px;
+      width: 100%;
+      max-width: 340px; /* SAME as button */
+      margin: 26px auto 18px;
       display: block;
-      opacity: 0.9;
-      filter: drop-shadow(0 0 12px rgba(255,255,255,0.08));
+    
+      opacity: 0.95;
+      border-radius: 4px;
+      filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.08));
+      
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
     
     .matrix-image:hover {
-      transform: scale(1.05);
+      transform: scale(1.02);
       opacity: 1;
     }
+    .matrix-image + .btn {
+      margin-top: 10px;
+    }
+
 
     
   </style>
