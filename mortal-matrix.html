@@ -318,9 +318,6 @@
   <div class="overlay" id="chapterOverlay">
     <div class="overlay-content">
       <h3>CONTENTS</h3>
-      const lockedChapters = {
-        4: "Chapter 1 will be released on 05/01/2026"
-      };
       <button onclick="goToPage(0)">Cover</button>
       <button onclick="goToPage(1)">Prologue</button>
       
@@ -445,7 +442,10 @@
   function closeChapters() {
     document.getElementById("chapterOverlay").style.display = "none";
   }
-  
+
+  const lockedChapters = {
+        4: "Chapter 1 will be released on 05/01/2026"
+      };
   function goToPage(index) {
     if (lockedChapters[index]) {
       alert(lockedChapters[index]);
