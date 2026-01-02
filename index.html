@@ -162,7 +162,20 @@
     .social-links a:hover svg {
       fill: #f72119;
     }
-
+    .matrix-image {
+      width: 120px;
+      max-width: 50vw;
+      margin: 20px auto 26px;
+      display: block;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 12px rgba(255,255,255,0.08));
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    
+    .matrix-image:hover {
+      transform: scale(1.05);
+      opacity: 1;
+    }
 
     
   </style>
@@ -213,6 +226,12 @@
         why energy replaced weapons, and how humanity survived
         after the collapse.
       </p>
+      <!-- IMAGE ABOVE BUTTON -->
+      <img 
+        src="assets/mortal-series.png" 
+        alt="Mortal Matrix Symbol" 
+        class="matrix-image"
+      >
       <a href="matrix-info.html" class="btn">ACCESS MATRIX INFO</a>
     </section>
 
