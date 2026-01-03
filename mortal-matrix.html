@@ -305,11 +305,14 @@
     .overlay {
       z-index: 10001;
     }
+    /* Disable text selection */
+    body {
+      -webkit-user-select: none; /* Safari */
+      -ms-user-select: none;     /* IE/Edge */
+      user-select: none;         /* Standard */
+    }
 
-
-
-
-    
+   
   </style>
 </head>
 
