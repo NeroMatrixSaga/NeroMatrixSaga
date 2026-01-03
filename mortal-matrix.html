@@ -97,6 +97,13 @@
       border-color: rgba(224,224,230,0.25);
       cursor: default;
     }
+    /* Disable selection only inside book */
+    .book-frame, 
+    .book-frame * {
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
 
     /* ================= BOOK FRAME ================= */
 
@@ -121,6 +128,7 @@
       padding: 0;
       box-shadow: 0 25px 60px rgba(0,0,0,0.7);
     }
+    
 
 
     /* ================= PAGE + SCROLLBAR ================= */
@@ -455,6 +463,12 @@
     closeChapters();
     renderPage();
   }
+
+  <script>
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+  </script>
 
 
   function nextPage() {
