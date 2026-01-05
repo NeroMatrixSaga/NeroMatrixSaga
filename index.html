@@ -18,7 +18,9 @@
 
   gtag('config', 'G-G7Z46RBJGT');
   </script>
-  
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#070709">
+
 
   <style>
     body {
@@ -302,6 +304,11 @@
     </footer>
 
   </main>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js");
+    }
+  </script>
 
 </body>
 </html>
