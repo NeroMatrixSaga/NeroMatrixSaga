@@ -206,7 +206,8 @@
 
           <div class="social-links">
       <a href="https://www.instagram.com/neromatrixsaga" 
-         target="_blank" 
+         target="_blank"
+         rel="noopener"
          aria-label="Instagram">
          
         <!-- Instagram SVG Icon -->
@@ -216,6 +217,14 @@
     
       </a>
     </div>
+      <button id="installBtn" class="btn" style="display:none;">
+        INSTALL APP
+      </button>
+      <p id="iosHint" style="display:none; opacity:0.6; font-size:0.85rem;">
+        To install: Share → Add to Home Screen
+      </p>
+
+
     </section>
 
     
@@ -298,6 +307,45 @@
       navigator.serviceWorker.register("/sw.js");
     }
   </script>
+  <script>
+      let deferredPrompt;
+      const installBtn = document.getElementById("installBtn");
+    
+      // Hide install button if already installed
+      if (window.matchMedia('(display-mode: standalone)').matches) {
+        installBtn.style.display = "none";
+      }
+    
+      // Capture install prompt
+      window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installBtn.style.display = "inline-flex";
+      });
+    
+      // Handle install button click
+      installBtn.addEventListener("click", async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+        installBtn.style.display = "none";
+      });
+    
+      // Hide button after installation
+      window.addEventListener("appinstalled", () => {
+        installBtn.style.display = "none";
+      });
+    
+      // iOS manual install hint
+      if (
+        /iphone|ipad|ipod/i.test(navigator.userAgent) &&
+        !window.matchMedia('(display-mode: standalone)').matches
+      ) {
+        document.getElementById("iosHint").style.display = "block";
+      }
+    </script>
+
 
 </body>
 </html>
