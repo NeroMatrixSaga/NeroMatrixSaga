@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/thelieofascension/(.*)",
+      "destination": "/thelieofascension/index.html"
+    }
+  ]
+}
