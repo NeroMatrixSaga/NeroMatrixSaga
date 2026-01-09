@@ -532,6 +532,8 @@ html, body {
   width: 20px;
   height: 20px;
   object-fit: contain;
+  display: block;
+  flex-shrink: 0;
 }
 
 /* MOBILE: HIDE TEXT */
