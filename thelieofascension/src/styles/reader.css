@@ -1,0 +1,543 @@
+/* ======================================================
+   GLOBAL
+====================================================== */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ======================================================
+   APP
+====================================================== */
+.app {
+  min-height: 100vh;
+  transition: background 0.3s ease;
+}
+
+/* BACKGROUND LAYER */
+.app-bg {
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+
+/* ======================================================
+   READER LAYOUT
+====================================================== */
+.reader {
+  display: flex;
+  justify-content: center;
+  padding: 96px 16px 96px;
+}
+
+/* CONTENT COLUMN */
+.reader-content {
+  width: 100%;
+  max-width: 720px;
+}
+
+/* TEXT */
+.reader p {
+  font-size: 1.15rem;
+  line-height: 1.25;
+  text-align: justify;
+  white-space: pre-line;
+}
+
+/* ======================================================
+   HEADER
+====================================================== */
+.reader-header {
+  position: sticky;
+  top: 0;
+  width: 100vw;
+  height: 56px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 16px;
+  box-sizing: border-box;
+
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+
+.header-title {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.1;
+  pointer-events: none; /* prevents accidental taps */
+}
+
+.title-main {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.title-sub {
+  font-size: 0.7rem;
+  opacity: 0.6;
+  margin-top: 2px;
+}
+
+.header-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: inherit;
+}
+
+/* ======================================================
+   SETTINGS / MENU PANEL (Shared)
+====================================================== */
+.settings-panel {
+  position: fixed;
+  top: 56px;
+  right: 16px;
+
+  padding: 16px;
+  width: 200px;
+
+  border-radius: 8px;
+  border: 1px solid;
+  z-index: 200;
+
+  font-size: 0.9rem;
+}
+
+.settings-panel button {
+  margin-top: 8px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid currentColor;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Panel controls */
+.setting-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+/* LEFT-SIDE MENU PANEL (☰ BUTTON) */
+.menu-panel {
+  left: 16px;
+  right: auto;
+}
+
+.font-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.font-control span {
+  min-width: 40px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ======================================================
+   THEMES
+====================================================== */
+.app.dark {
+  background: #0e0e0e;
+  color: #eaeaea;
+}
+
+.app.dark .app-bg { background: #121212; }
+.app.dark .reader-header { background: rgba(14,14,14,0.95); }
+.app.dark .settings-panel {
+  background: #111;
+  border-color: #222;
+  color: #eaeaea;
+}
+
+.app.light {
+  background: #f5f5f5;
+  color: #111;
+}
+
+.app.light .app-bg { background: #ededed; }
+.app.light .reader-header { background: rgba(245,245,245,0.95); }
+.app.light .settings-panel {
+  background: #fff;
+  border-color: #ccc;
+  color: #111;
+}
+
+.app.eye {
+  background: #1c1a16;
+  color: #e4ddc7;
+}
+
+.app.eye .app-bg { background: #201d17; }
+.app.eye .reader-header { background: rgba(28,26,22,0.95); }
+.app.eye .settings-panel {
+  background: #1c1a16;
+  border-color: #3a3428;
+  color: #e4ddc7;
+}
+
+/* ======================================================
+   COVER PAGE
+====================================================== */
+.cover-page {
+  width: 100%;
+  min-height: calc(100vh - 56px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.cover-image {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 2 / 3;
+
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+}
+
+.reader-cover {
+  padding-top: 0;
+  align-items: center;
+}
+
+.reader-cover .reader-content {
+  padding-top: 5px;
+  padding-bottom: 20px;
+}
+
+.start-reading {
+  padding: 12px 28px;
+  font-size: 1rem;
+  border-radius: 24px;
+
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+}
+
+.app.dark .start-reading {
+  background: #eaeaea;
+  color: #111;
+}
+
+.app.eye .start-reading {
+  background: #e4ddc7;
+  color: #1c1a16;
+}
+
+/* ======================================================
+   PROLOGUE
+====================================================== */
+.prologue-title {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 1.6rem;
+}
+
+/* ======================================================
+   READER FOOTER
+====================================================== */
+.reader-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 56px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 16px;
+  box-sizing: border-box;
+
+  border-top: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reader-footer button {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid currentColor;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: inherit;
+}
+
+.reader-footer button:hover {
+  opacity: 0.85;
+  background: rgba(255,255,255,0.08);
+}
+
+.app.light .reader-footer button:hover {
+  background: rgba(0,0,0,0.08);
+}
+
+.app.dark .reader-footer {
+  background: rgba(14,14,14,0.95);
+}
+
+.app.light .reader-footer {
+  background: rgba(245,245,245,0.95);
+}
+
+.app.eye .reader-footer {
+  background: rgba(28,26,22,0.95);
+}
+
+/* PAGE NUMBER BOX (FOOTER) */
+.page-number-box {
+  min-width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid currentColor;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0.75;
+  user-select: none;
+}
+
+/* BOOKMARK BUTTON */
+.bookmark-btn {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bookmark-btn:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.app.light .bookmark-btn:hover {
+  background: rgba(0,0,0,0.08);
+}
+
+.bookmark-btn.active {
+  border-color: currentColor;
+  opacity: 1;
+}
+
+.bookmark-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+/* ======================================================
+   DICTIONARY
+====================================================== */
+.dictionary-box {
+  position: fixed;
+  max-width: 320px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+
+  max-height: 45vh;
+  overflow-y: auto;
+
+  z-index: 1500;
+  animation: fadeInOut 0.3s ease;
+}
+
+@media (min-width: 769px) {
+  .dictionary-box {
+    top: 96px;
+    right: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dictionary-box {
+    left: 8px;
+    right: 8px;
+    bottom: 72px;
+  }
+}
+
+.dictionary-box strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+
+.app.dark .dictionary-box {
+  background: #111;
+  color: #eaeaea;
+  border: 1px solid #222;
+}
+
+.app.light .dictionary-box {
+  background: #fff;
+  color: #111;
+  border: 1px solid #ccc;
+}
+
+.app.eye .dictionary-box {
+  background: #1c1a16;
+  color: #e4ddc7;
+  border: 1px solid #3a3428;
+}
+
+/* ======================================================
+   ICON-ONLY (MOBILE)
+====================================================== */
+.icon-only {
+  display: none;
+}
+
+.text-only {
+  display: inline;
+}
+
+@media (max-width: 768px) {
+  .icon-only {
+    display: inline;
+    font-size: 1.1rem;
+  }
+
+  .text-only {
+    display: none;
+  }
+
+  .reader {
+    padding: 80px 16px 48px;
+  }
+}
+
+/* ======================================================
+   ANIMATION
+====================================================== */
+@keyframes fadeInOut {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ======================================================
+   PAGE TURN EFFECT (REFINED)
+====================================================== */
+
+.page-turn {
+  animation-duration: 360ms;
+  animation-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  animation-fill-mode: both;
+}
+
+/* NEXT PAGE → slide left */
+.page-turn.next {
+  animation-name: pageNext;
+}
+
+/* PREVIOUS PAGE → slide right */
+.page-turn.prev {
+  animation-name: pagePrev;
+}
+
+@keyframes pageNext {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pagePrev {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.home-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .home-text {
+    display: none;
+  }
+}
+
+/* HOME LOGO BUTTON */
+.home-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+}
+
+/* LOGO IMAGE */
+.home-logo {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* MOBILE: HIDE TEXT */
+@media (max-width: 768px) {
+  .home-text {
+    display: none;
+  }
+}
+
